@@ -1,0 +1,268 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> S
+Rule 1     S -> IF LP C RP LCUR S1 semicolon RCUR ELSE LCUR S2 semicolon RCUR
+Rule 2     C -> ID OP1 OP2 VAL
+Rule 3     C -> ID OP2 OP2 VAL
+Rule 4     C -> ID OP3 OP2 VAL
+Rule 5     C -> ID OP6 OP2 VAL
+Rule 6     C -> ID OP3 VAL
+Rule 7     C -> ID OP6 VAL
+
+Terminals, with rules where they appear
+
+ELSE                 : 1
+ID                   : 2 3 4 5 6 7
+IF                   : 1
+LCUR                 : 1 1
+LP                   : 1
+OP1                  : 2
+OP2                  : 2 3 3 4 5
+OP3                  : 4 6
+OP6                  : 5 7
+RCUR                 : 1 1
+RP                   : 1
+S1                   : 1
+S2                   : 1
+VAL                  : 2 3 4 5 6 7
+error                : 
+semicolon            : 1 1
+
+Nonterminals, with rules where they appear
+
+C                    : 1
+S                    : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . S
+    (1) S -> . IF LP C RP LCUR S1 semicolon RCUR ELSE LCUR S2 semicolon RCUR
+
+    IF              shift and go to state 2
+
+    S                              shift and go to state 1
+
+state 1
+
+    (0) S' -> S .
+
+
+
+state 2
+
+    (1) S -> IF . LP C RP LCUR S1 semicolon RCUR ELSE LCUR S2 semicolon RCUR
+
+    LP              shift and go to state 3
+
+
+state 3
+
+    (1) S -> IF LP . C RP LCUR S1 semicolon RCUR ELSE LCUR S2 semicolon RCUR
+    (2) C -> . ID OP1 OP2 VAL
+    (3) C -> . ID OP2 OP2 VAL
+    (4) C -> . ID OP3 OP2 VAL
+    (5) C -> . ID OP6 OP2 VAL
+    (6) C -> . ID OP3 VAL
+    (7) C -> . ID OP6 VAL
+
+    ID              shift and go to state 5
+
+    C                              shift and go to state 4
+
+state 4
+
+    (1) S -> IF LP C . RP LCUR S1 semicolon RCUR ELSE LCUR S2 semicolon RCUR
+
+    RP              shift and go to state 6
+
+
+state 5
+
+    (2) C -> ID . OP1 OP2 VAL
+    (3) C -> ID . OP2 OP2 VAL
+    (4) C -> ID . OP3 OP2 VAL
+    (5) C -> ID . OP6 OP2 VAL
+    (6) C -> ID . OP3 VAL
+    (7) C -> ID . OP6 VAL
+
+    OP1             shift and go to state 7
+    OP2             shift and go to state 8
+    OP3             shift and go to state 9
+    OP6             shift and go to state 10
+
+
+state 6
+
+    (1) S -> IF LP C RP . LCUR S1 semicolon RCUR ELSE LCUR S2 semicolon RCUR
+
+    LCUR            shift and go to state 11
+
+
+state 7
+
+    (2) C -> ID OP1 . OP2 VAL
+
+    OP2             shift and go to state 12
+
+
+state 8
+
+    (3) C -> ID OP2 . OP2 VAL
+
+    OP2             shift and go to state 13
+
+
+state 9
+
+    (4) C -> ID OP3 . OP2 VAL
+    (6) C -> ID OP3 . VAL
+
+    OP2             shift and go to state 14
+    VAL             shift and go to state 15
+
+
+state 10
+
+    (5) C -> ID OP6 . OP2 VAL
+    (7) C -> ID OP6 . VAL
+
+    OP2             shift and go to state 16
+    VAL             shift and go to state 17
+
+
+state 11
+
+    (1) S -> IF LP C RP LCUR . S1 semicolon RCUR ELSE LCUR S2 semicolon RCUR
+
+    S1              shift and go to state 18
+
+
+state 12
+
+    (2) C -> ID OP1 OP2 . VAL
+
+    VAL             shift and go to state 19
+
+
+state 13
+
+    (3) C -> ID OP2 OP2 . VAL
+
+    VAL             shift and go to state 20
+
+
+state 14
+
+    (4) C -> ID OP3 OP2 . VAL
+
+    VAL             shift and go to state 21
+
+
+state 15
+
+    (6) C -> ID OP3 VAL .
+
+    RP              reduce using rule 6 (C -> ID OP3 VAL .)
+
+
+state 16
+
+    (5) C -> ID OP6 OP2 . VAL
+
+    VAL             shift and go to state 22
+
+
+state 17
+
+    (7) C -> ID OP6 VAL .
+
+    RP              reduce using rule 7 (C -> ID OP6 VAL .)
+
+
+state 18
+
+    (1) S -> IF LP C RP LCUR S1 . semicolon RCUR ELSE LCUR S2 semicolon RCUR
+
+    semicolon       shift and go to state 23
+
+
+state 19
+
+    (2) C -> ID OP1 OP2 VAL .
+
+    RP              reduce using rule 2 (C -> ID OP1 OP2 VAL .)
+
+
+state 20
+
+    (3) C -> ID OP2 OP2 VAL .
+
+    RP              reduce using rule 3 (C -> ID OP2 OP2 VAL .)
+
+
+state 21
+
+    (4) C -> ID OP3 OP2 VAL .
+
+    RP              reduce using rule 4 (C -> ID OP3 OP2 VAL .)
+
+
+state 22
+
+    (5) C -> ID OP6 OP2 VAL .
+
+    RP              reduce using rule 5 (C -> ID OP6 OP2 VAL .)
+
+
+state 23
+
+    (1) S -> IF LP C RP LCUR S1 semicolon . RCUR ELSE LCUR S2 semicolon RCUR
+
+    RCUR            shift and go to state 24
+
+
+state 24
+
+    (1) S -> IF LP C RP LCUR S1 semicolon RCUR . ELSE LCUR S2 semicolon RCUR
+
+    ELSE            shift and go to state 25
+
+
+state 25
+
+    (1) S -> IF LP C RP LCUR S1 semicolon RCUR ELSE . LCUR S2 semicolon RCUR
+
+    LCUR            shift and go to state 26
+
+
+state 26
+
+    (1) S -> IF LP C RP LCUR S1 semicolon RCUR ELSE LCUR . S2 semicolon RCUR
+
+    S2              shift and go to state 27
+
+
+state 27
+
+    (1) S -> IF LP C RP LCUR S1 semicolon RCUR ELSE LCUR S2 . semicolon RCUR
+
+    semicolon       shift and go to state 28
+
+
+state 28
+
+    (1) S -> IF LP C RP LCUR S1 semicolon RCUR ELSE LCUR S2 semicolon . RCUR
+
+    RCUR            shift and go to state 29
+
+
+state 29
+
+    (1) S -> IF LP C RP LCUR S1 semicolon RCUR ELSE LCUR S2 semicolon RCUR .
+
+    $end            reduce using rule 1 (S -> IF LP C RP LCUR S1 semicolon RCUR ELSE LCUR S2 semicolon RCUR .)
+
